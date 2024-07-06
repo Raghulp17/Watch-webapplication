@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #ce838c; */
+            background-image: url(background1.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 400px;
+            width: 90%;
+            background-color:  rgba(232, 185, 217, 0.704);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: hsla(288, 79%, 29%, 0.549);
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: darkorchid;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Signup</h1>
+        <form id="signup-form" onsubmit="handleSubmit(event)">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Signup</button>
+        </form>
+        <p>Already have an account? <a href="index.html" onclick="showLoginPage();">Login here</a></p>
+
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Process form data (you can add your logic here for signup process)
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Example validation (replace with your actual validation logic)
+            if (username && email && password) {
+                // Assuming signup is successful, show alert (can replace with actual backend processing)
+                alert(`Signup successful for ${username} with email ${email}`);
+
+                // Redirect to login page (uncomment the following line to redirect)
+                window.location.href = "index.html";
+                showLoginPage(); // For demonstration
+            } else {
+                alert("Please fill in all fields");
+            }
+        }
+
+        function showLoginPage() {
+            // Replace this with actual logic to redirect to the login page
+            alert("Redirecting to the login page...");
+            // Example: window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('background1.jpg');
+            margin: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container, .order-container {
+            max-width: 800px;
+            width: 90%;
+            margin: auto;
+            background: rgba(232, 185, 217, 0.704); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(204, 182, 201, 0.749);
+        }
+        h1 {
+            color: #000000f6;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ce838c;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            background-color: hsla(288, 79%, 29%, 0.549);
+            color: white;
+            cursor: pointer;
+            width: (100px); /* Half width minus margin */
+        }
+
+        button:hover {
+            background-color: hsla(288, 79%, 29%, 0.8); /* Darker background color on hover */
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%; /* Full width of parent container */
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 15px; /* Increased padding for better spacing */
+            text-align: left;
+            font-size: 16px; /* Increased font size for better readability */
+        }
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+        }
+        #total-items {
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        .remove-button {
+            background-color: red; /* Red color for remove button */
+        }
+        @media (max-width: 600px) {
+            th, td {
+                padding: 10px; /* Adjust padding for smaller screens */
+                font-size: 14px; /* Decrease font size for smaller screens */
+            }
+            .button-container {
+                flex-direction: column;
+            }
+            button {
+                width: 100%;
+                margin: 5px 0; /* Adjust margin for spacing between buttons in column layout */
+            }
+        }
+        /* Specific background images for each page */
+        #login-page {
+            background-image: url('login-background.jpg'); /* Replace with your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        #home-page {
+            background-image: url('home-background.jpg'); /* Replace with your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        #product-page {
+            background-image: url('men-product-background.jpg'); /* Replace with your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        #women-product-page {
+            background-image: url('women-product-background.jpg'); /* Replace with your background image */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        #signup {
+        display: block; /* Ensures the link occupies the full width of its container */
+        text-align: center; /* Centers the text horizontally */
+        margin-top: 10px; /* Adds space between the login button and the signup link */
+        color: #3498db; /* Blue color for the link */
+        text-decoration: none; /* Removes underline from the link */
+    }
+    
+    #signup span {
+        font-weight: bold; /* Makes the "Signup" text bold */
+    }
+    
+    #signup:hover {
+        color: #2980b9; 
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Login Page -->
+        <div class="container" id="login-page">
+            <h1>Login</h1>
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+                <a href="/Signup.html" id="signup">Create User <span>Signup</span></a>
+            </form>
+        </div>
+    </div>
+    
+        <!-- Home Page -->
+        <div class="container" id="home-page" style="display: none;">
+            <h1>Welcome to Watch Shop</h1>
+            <div class="button-container">
+                <button onclick="showPage('product-page')">Men's Product Details</button>
+                <button onclick="showPage('women-product-page')">Women's Product Details</button>
+                <button onclick="showPage('order-page')">Order Summary</button>
+            </div>
+        </div>
+
+        <!-- Men's Product Details Page -->
+        <div class="container" id="product-page" style="display: none;">
+            <h1>Men's Product Details</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Image</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><img src="90148KD02_1.webp" alt="Men's Watch 1"></td>
+                        <td>Titan Watch</td>
+                        <td>$1200</td>
+                        <td><button onclick="orderProduct('Titan Watch', '90148KD02_1.webp', 1200, 'Men')">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><img src="fast trackimages.jpeg" alt="Men's Watch 2"></td>
+                        <td>Fast track Watch</td>
+                        <td>$1500</td>
+                        <td><button onclick="orderProduct('Fast track Watch', 'fast trackimages.jpeg', 1500, 'Men')">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><img src="rolex.png" alt="Men's Watch 3"></td>
+                        <td>Rolex Watch</td>
+                        <td>$2000</td>
+                        <td><button onclick="orderProduct('Rolex Watch', 'rolex.png', 2000, 'Men')">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><img src="smartwatch.jpg" alt="Men's Watch 4"></td>
+                        <td>Smart Watch</td>
+                        <td>$2500</td>
+                        <td><button onclick="orderProduct('Smart Watch', 'smartwatch.jpg', 2500, 'Men')">Order</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="showPage('home-page')">Back to Home</button>
+        </div>
+
+        <!-- Women's Product Details Page -->
+        <div class="container" id="women-product-page" style="display: none;">
+            <h1>Women's Product Details</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Image</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><img src="women's watch 1.jpg" alt="Women's Watch 1"></td>
+                        <td>Fossil Watch</td>
+                        <td>$1100</td>
+                        <td><button onclick="orderProduct('Fossil Watch', 'women\'s watch 1.jpg', 1100, 'Women')">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><img src="women's background.jpeg" alt="Women's Watch 2"></td>
+                        <td>Michael Kors Watch</td>
+                        <td>$1400</td>
+                        <td><button onclick="orderProduct('Michael Kors Watch', 'women\'s background.jpeg', 1400, 'Women')">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><img src="womens watch 3.webp" alt="Women's Watch 3"></td>
+                        <td>Guess Watch</td>
+                        <td>$1300</td>
+                        <td><button onclick="orderProduct('Guess Watch', 'womens watch 3.webp', 1300, 'Women')">Order</button></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><img src="womes watch 4.avif" alt="Women's Watch 4"></td>
+                        <td>Anne Klein Watch</td>
+                        <td>$1600</td>
+                        <td><button onclick="orderProduct('Anne Klein Watch', 'womes watch 4.avif', 1600, 'Women')">Order</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="showPage('home-page')">Back to Home</button>
+        </div>
+
+        <!-- Order Details Page -->
+        <div class="order-container" id="order-page" style="display: none;">
+            <h1>Orders Summary</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Gender Type</th>
+                        <th>Product Name</th>
+                        <th>Product Image</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Action</th> <!-- Added Action column header -->
+                    </tr>
+                </thead>
+                <tbody id="order-list">
+                </tbody>
+            </table>
+            <p>Total items sold: <span id="total-items">0</span></p>
+            <button onclick="showPage('home-page')">Back to Home</button>
+        </div>
+    </div>
+
+    <script>
+        const orders = []; // Initialize orders array
+
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Simple login validation
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'user' && password === 'password') {
+                showPage('home-page');
+            }
+            else {
+                alert('Invalid Username or Password');
+            }
+        });
+
+        function showPage(pageId) {
+            const pages = ['login-page', 'home-page', 'product-page', 'women-product-page', 'order-page'];
+            pages.forEach(page => {
+                document.getElementById(page).style.display = 'none';
+            });
+            document.getElementById(pageId).style.display = 'block';
+        }
+
+        // Function to calculate total items sold
+        function calculateTotalItems(orders) {
+            return orders.reduce((total, order) => total + order.quantity, 0);
+        }
+
+        // Function to display orders and total items sold
+        function displayOrders() {
+            const orderList = document.getElementById('order-list');
+            const totalItemsElement = document.getElementById('total-items');
+
+            // Clear the current list
+            orderList.innerHTML = '';
+
+            // Display each order in the table
+            orders.forEach(order => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${order.id}</td>
+                    <td>${order.category}</td>
+                    <td>${order.item}</td>
+                    <td><img src="${order.image}" alt="${order.item}"></td>
+                    <td>$${order.price}</td>
+                    <td>${order.quantity}</td>
+                    <td><button class="remove-button" onclick="removeOrder(${order.id})">Remove</button></td> <!-- Remove button -->
+                `;
+                orderList.appendChild(row);
+            });
+
+            // Calculate and display total items sold
+            const totalItems = calculateTotalItems(orders);
+            totalItemsElement.textContent = totalItems;
+        }
+
+        // Function to handle ordering a product
+        function orderProduct(productName, productImage, price, category) {
+            const order = orders.find(order => order.item === productName && order.category === category);
+            if (order) {
+                order.quantity += 1;
+            } else {
+                orders.push({ id: orders.length + 1, category: category, item: productName, image: productImage, price: price, quantity: 1 });
+            }
+            alert('Order placed for ' + productName);
+            displayOrders(); // Update orders display
+        }
+
+        // Function to remove an order
+        function removeOrder(orderId) {
+            const index = orders.findIndex(order => order.id === orderId);
+            if (index !== -1) {
+                orders.splice(index, 1);
+                displayOrders(); // Update orders display after removal
+            }
+        }
+
+        // Call the displayOrders function on orders page load
+        if (document.getElementById('order-list')) {
+            displayOrders();
+        }
+    </script>
+</body>
+</html>
